@@ -2,39 +2,39 @@ import { Sequelize } from 'sequelize'
 import db from '../config/database'
 
 const Area = db.define('area', {
-    areaid: {
+    areaId: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    areaname: {
+    areaName: {
         type: Sequelize.STRING,
         allowNull: false
     },
-    postalcode: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
-    createdby: {
+    postalCode: {
         type: Sequelize.STRING,
-        allowNull: false
-    },
-    createdat: {
-        type: Sequelize.DATE,
         allowNull: false,
-        defaultValue: Sequelize.NOW
+        validate: {
+            isNumeric: {
+                args: true,
+                msg: 'Please enter a number code as postal code'
+            },
+            len: {
+                args: [7, 7],
+                msg: 'maximum length is 7 for postal code'
+            }
+        }
     },
-    updatedby: {
+    createdBy: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    updatedBy: {
         type: Sequelize.STRING,
         allowNull: true
-    },
-    updatedat: {
-        type: Sequelize.DATE,
-        allowNull: true,
-        defaultValue: Sequelize.NOW
     }
 }, {
-    timestamps: false,
+    timestamps: true,
     freezeTableName: true
 })
 

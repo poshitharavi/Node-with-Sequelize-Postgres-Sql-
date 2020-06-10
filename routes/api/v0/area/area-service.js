@@ -7,42 +7,42 @@ export const getAllAreas = async() => {
 }
 
 export const getAreaById = async(id) => {
-    return await Area.findAll({ where: { areaid: id } })
+    return await Area.findAll({ where: { areaId: id } })
 }
 
 export const saveArea = async(data) => {
 
     return await Area.create({
-        areaname: data.areaname,
-        postalcode: data.postalcode,
-        createdby: data.user,
-        updatedby: data.user
+        areaName: data.areaName,
+        postalCode: data.postalCode,
+        createdBy: data.user,
+        updatedBy: data.user
     })
 }
 
 export const updateArea = async(id, data) => {
 
     const updateStatus = await Area.update({
-        areaname: data.areaname,
-        postalcode: data.postalcode,
-        updatedby: data.user
+        areaName: data.areaName,
+        postalCode: data.postalCode,
+        updatedBy: data.user
     }, {
         where: {
-            areaid: id
+            areaId: id
         }
     })
 
-    if (updateStatus[0] === 1) return await Area.findAll({ where: { areaid: id } })
+    if (updateStatus[0] === 1) return await Area.findAll({ where: { areaId: id } })
 
     throw new Error('area id is not found')
 }
 
 export const deleteArea = async(id) => {
 
-    const deletingArea = await Area.findAll({ where: { areaid: id } })
+    const deletingArea = await Area.findAll({ where: { areaId: id } })
     if (deletingArea[0]) {
         await Area.destroy({
-            where: { areaid: id }
+            where: { areaId: id }
         })
 
         return deletingArea

@@ -11,4 +11,6 @@ const sequelize = new Sequelize(process.env.DATABASE_NAME, process.env.DATABASE_
     }
 })
 
+sequelize.sync()
+
 module.exports = sequelize
