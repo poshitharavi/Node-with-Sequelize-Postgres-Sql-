@@ -27,7 +27,7 @@ lib-cov
 coverage
 
 # Dotenv file
-.env
+# .env
 
 # nyc test coverage
 .nyc_output
