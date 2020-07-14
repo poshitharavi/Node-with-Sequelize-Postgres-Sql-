@@ -1,5 +1,5 @@
 import express from "express";
-import { addOrderController } from "./order-controller";
+import { addOrderController, getAllOrdersController } from "./order-controller";
 import multer from "multer";
 import { func } from "joi";
 import path from "path";
@@ -24,6 +24,7 @@ let upload = multer({
   limits: { fileSize: maxSize },
 }).single("order_file");
 
+order.get("/", getAllOrdersController);
 order.post("/add-orders", upload, addOrderController);
 
 export default order;

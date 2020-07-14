@@ -13,7 +13,7 @@ export const getAllAreasController = async (req, res) => {
   if (!err) {
     return res.json(areas);
   }
-  return res.status(500).json({
+  return res.status(400).json({
     status: 2,
     error: err.message,
   });
